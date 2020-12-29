@@ -9,27 +9,26 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.File;
 import javax.swing.*;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 
 public class TJToolBar {
     JFrame jf=new JFrame("User Interfaces");    //利用JFrame這個class 來New出一個新的物件jf;
-    JToolBar toolbar = new JToolBar();          //利用JToolBar這個class 來new 出toolbar這個物件;
-    JToolBar jtoolbar2 = new JToolBar();
-    JToolBar jtoolbar3 = new JToolBar();
-    JToolBar jtoolbar4 = new JToolBar();
+    JToolBar Northtoolbar = new JToolBar();          //利用JToolBar這個class 來new 出toolbar這個物件;
+    JToolBar Westtoolbar = new JToolBar();
+    JToolBar Easttoolbar = new JToolBar();
+    JToolBar Southtoolbar = new JToolBar();
     JToolBar jtoolbar5 = new JToolBar();
     JToolBar jtoolbar6 = new JToolBar();
     String fnameGloble;                         //為了存取方法中fname絕對檔案路徑而設置的字串型態全域變數;
     Point getPoint = new Point();               //同上;
-    JPanel panel= new JPanel();
+    JPanel panel = new JPanel();
+    
     TJToolBar(){     
-        
+           
         String path1 = "C:" + File.separator + "Users"+ File.separator+"User"+ File.separator +"Desktop"+ File.separator+"java"+ File.separator+"1.PNG";
         Icon icon1 = new ImageIcon(path1);
-
                                                 //String 宣告path1然後檔案位置，new 出一個新的imageIcon讓他的建構函式接收path1
-        
+      
         String path2 = "C:" + File.separator + "Users"+ File.separator+"User"+ File.separator +"Desktop"+ File.separator+"java"+ File.separator+"2.PNG";
         Icon icon2 = new ImageIcon(path2);
         
@@ -49,148 +48,141 @@ public class TJToolBar {
         Icon icon7 = new ImageIcon(path7);
         
         
-        JButton tool1 = new JButton(icon1);
-        JButton tool2 = new JButton(icon2);
-        JButton tool3 = new JButton(icon3);
-        JButton tool4 = new JButton(icon4);
-        JButton tool5 = new JButton(icon5);
-        JButton tool6 = new JButton(icon6);
-        JLabel  Label1 = new JLabel ("功能列");
+        JButton File = new JButton(icon1);
+        JButton Last = new JButton(icon2);
+        JButton Next = new JButton(icon3);
+        JButton TCan = new JButton(icon4);
+        JButton greenPlus = new JButton(icon5);
+        JButton lastButton = new JButton(icon6);
+        JLabel  mytoolbar = new JLabel ("工具列");
         
-        toolbar.add(tool1);
-        toolbar.add(tool2);
-        toolbar.add(tool3);
-        toolbar.add(tool4);
-        toolbar.add(tool5);
-        toolbar.add(tool6);
-        toolbar.add(Label1);
+        Northtoolbar.add(File);
+        Northtoolbar.add(Last);
+        Northtoolbar.add(Next);
+        Northtoolbar.add(TCan);
+        Northtoolbar.add(greenPlus);
+        Northtoolbar.add(lastButton);
+        Northtoolbar.add(mytoolbar);
         
-        jtoolbar2.setLayout(null);
-        jtoolbar2.setLayout(new GridLayout(4,1,1,10));
-        JButton tool7 = new JButton("選項按鈕");
-        jtoolbar2.add(tool7);
+        Westtoolbar.setLayout(null);
+        Westtoolbar.setLayout(new GridLayout(4,1,1,10));
+        JButton OptionButton = new JButton("選項按鈕");
+        Westtoolbar.add(OptionButton);
         
-        JButton tool8 =  new JButton("文字方塊");
-        jtoolbar2.add(tool8);
+        JButton textbox =  new JButton("文字方塊");
+        Westtoolbar.add(textbox);
         
-        JButton tool9 = new JButton(icon7);
-        jtoolbar2.add(tool9);
+        JButton newImage = new JButton(icon7);
+        Westtoolbar.add(newImage);
         
-        JLabel label2 = new JLabel("工具欄");
-        jtoolbar2.add(label2);
+        JLabel mytoolbar2 = new JLabel("工具欄");
+        Westtoolbar.add(mytoolbar2);
         
-        jtoolbar3.setLayout(null);
-        jtoolbar3.setLayout(new GridLayout(3,1,0,50));
+        Easttoolbar.setLayout(null);
+        Easttoolbar.setLayout(new GridLayout(3,1,0,50));
         
-        JButton tool10 = new JButton("圖層");
-        jtoolbar3.add(tool10);
+        JButton layer = new JButton("圖層");
+        Easttoolbar.add(layer);
         
-        JLabel label3 = new JLabel(" ");
-        jtoolbar3.add(label3);
+        JLabel nofunction1 = new JLabel(" ");
+        Easttoolbar.add(nofunction1);
         
-        JLabel label5 = new JLabel(" ");
-        jtoolbar3.add(label5);
+        JLabel nofunction2 = new JLabel(" ");
+        Easttoolbar.add(nofunction2);
         
-        JLabel label6 = new JLabel();
-        jtoolbar6.add(label6);
+        JLabel imagecontainer = new JLabel();               //做為新增圖片的container
+        panel.add(imagecontainer);
         
-        JLabel label4 = new JLabel("對話總覽");
-        label4.setBounds(0,0,100,100);
-        jtoolbar4.add(label4);
+        JLabel talkwatch = new JLabel("對話總覽");
+        talkwatch.setBounds(0,0,100,100);
+        Southtoolbar.add(talkwatch);
         
-        JButton tool11 = new JButton("插入背景");
-        jtoolbar5.add(tool11);
+        /*JButton tool11 = new JButton("插入背景");
+        jtoolbar5.add(tool11);*/
         
-        jf.add(toolbar,BorderLayout.NORTH);
-        jf.add(jtoolbar2,BorderLayout.WEST);
-        jf.add(jtoolbar3,BorderLayout.EAST);
-        jf.add(jtoolbar4,BorderLayout.SOUTH);
-        jf.add(jtoolbar6,BorderLayout.CENTER);
-        //label6.setLocation(200,200);
+        jf.add(Northtoolbar,BorderLayout.NORTH);
+        jf.add(Westtoolbar,BorderLayout.WEST);
+        jf.add(Easttoolbar,BorderLayout.EAST);
+        jf.add(Southtoolbar,BorderLayout.SOUTH);
+        jf.add(panel,BorderLayout.CENTER);
         
         //tool9要先存在編譯才會過，所以放在這裡
         class FileChooser extends JFrame implements ActionListener {     
-        int i = 0;   
-        JPanel imgPane;   
-        //JLabel labeImag;     
-    public FileChooser() {   
-        tool9.addActionListener(this);   
-        imgPane = new JPanel();   
-    }   
+            int i = 0;   
+            JPanel imgPane;      
+            public FileChooser() {   
+            newImage.addActionListener(this);   
+            imgPane = new JPanel();   
+            }   
        
     public void actionPerformed(ActionEvent e) {   
-        if(e.getSource()==tool9) {   
+        if(e.getSource()==newImage) {   
             JFileChooser chooseFile = new JFileChooser();  
             int returnVal = chooseFile.showOpenDialog(null);   
             
             if(returnVal == chooseFile.APPROVE_OPTION) {   
                 if(i!=0) {   
-                    imgPane.remove(label6);                            //移除之前的图片   
+                    imgPane.remove(imagecontainer);                      
                 }   
             i++;   
             File f = chooseFile.getSelectedFile();   
             String fname = f.getAbsolutePath();
+            System.out.println(fname);
             fnameGloble = fname;
-            label6.setIcon(new ImageIcon(fname));   
-            label6.setHorizontalAlignment(JLabel.CENTER);             //圖片居中
-            getPoint = label6.getLocation();                          //取label6的座標位置回傳給全域變數getPoint
-            imgPane.add(label6,BorderLayout.CENTER);   
+            imagecontainer.setIcon(new ImageIcon(fname));   
+            imagecontainer.setHorizontalAlignment(JLabel.CENTER);             //圖片居中
+            getPoint = imagecontainer.getLocation();                          //取label6的座標位置回傳給全域變數getPoint
+            imgPane.add(imagecontainer,BorderLayout.CENTER);   
             jf.add(imgPane,BorderLayout.CENTER);   
             }   
         }   
     }   
-}
-        
-class DragPanel extends JPanel{
+}      
+        class DragPanel extends JPanel{
  
-    ImageIcon image = new ImageIcon(fnameGloble);
-    final int WIDTH = image.getIconWidth();
-    final int HEIGHT = image.getIconHeight();
-    Point imageCorner;
-    Point prevPt;
+        ImageIcon image = new ImageIcon(fnameGloble);
+        final int WIDTH = image.getIconWidth();
+        final int HEIGHT = image.getIconHeight();
+        Point imageCorner;
+        Point prevPt;
  
-    DragPanel(){
-  
-        imageCorner = getPoint;
-        ClickListener clickListener = new ClickListener();
-        DragListener dragListener = new DragListener();
-        this.addMouseListener(clickListener);
-        this.addMouseMotionListener(dragListener);
-    }
+        DragPanel(){  
+            imageCorner = new Point(350,250);
+            ClickListener clickListener = new ClickListener();
+            DragListener dragListener = new DragListener();
+            this.addMouseListener(clickListener);
+            this.addMouseMotionListener(dragListener);
+        }
  
- public void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    image.paintIcon(this, g, (int)imageCorner.getX(), (int)imageCorner.getY());
+        public void paintComponent(Graphics g) {
+            System.out.println(fnameGloble);
+            super.paintComponent(g);
+            image.paintIcon(this, g, (int)imageCorner.getX(), (int)imageCorner.getY());
  }
  
-class ClickListener extends MouseAdapter{
-  
-    public void mousePressed(MouseEvent e) {
-    prevPt = e.getPoint();
+        class ClickListener extends MouseAdapter{
+            public void mousePressed(MouseEvent e) {
+                System.out.print(imageCorner);
+                prevPt = e.getPoint();
     }
 }
  
-class DragListener extends MouseMotionAdapter{
-  
-public void mouseDragged(MouseEvent e) {
-   
-    Point currentPt = e.getPoint();
-   
-    imageCorner.translate(     
-     (int)(currentPt.getX() - prevPt.getX()),
-     (int)(currentPt.getY() - prevPt.getY())
-    );
-    prevPt = currentPt;
-    repaint();   
+        class DragListener extends MouseMotionAdapter{
+            public void mouseDragged(MouseEvent e) { 
+            Point currentPt = e.getPoint();
+            imageCorner.translate(     
+            (int)(currentPt.getX() - prevPt.getX()),
+            (int)(currentPt.getY() - prevPt.getY())
+        );
+        prevPt = currentPt;
+        repaint();   
     }  
    }
 }
-        
-        
-        
+        DragPanel dragPanel = new DragPanel();      //new出一個DragPanel類別的物件dragPanel
+          
         FileChooser fc = new FileChooser();         //new出FileChooser類別的物件fc
         
-        DragPanel dragPanel = new DragPanel();      //new出一個DragPanel類別的物件dragPanel
         jf.add(dragPanel);                          //利用container的物件jf來呼叫add函式並傳入dragPanel作為引數
         
         jf.add(panel);
@@ -200,6 +192,7 @@ public void mouseDragged(MouseEvent e) {
         jf.setBackground(Color.black);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
+        
     };
     public static void main(String[] args) {
         new TJToolBar();
