@@ -1,4 +1,3 @@
-
 package tjtoolbar;
 
 import java.awt.*;
@@ -8,10 +7,34 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 
 public class TJToolBar {
+     
+    class JSplitPaneDemo extends JFrame {
+        public JSplitPaneDemo(){
+        System.out.println("JSplitPaneDemo建構函式");
+            final JSplitPane splitPane = new JSplitPane();// 建立分割面版物件
+        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);// 設定為水平分割
+        splitPane.setDividerLocation(200);// 設定面版預設的分割位置
+        splitPane.setDividerSize(1000);// 設定分割條的寬度
+        splitPane.setOneTouchExpandable(true);// 設定為支援快速展開/摺疊分割條
+        splitPane.setBorder(new TitledBorder(null, "",
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION, null, null));// 設定面版的邊框
+                getContentPane().add(splitPane, BorderLayout.CENTER);// 將分割面版新增到上級容器中
+    }
+}
     JFrame jf=new JFrame("User Interfaces");    //利用JFrame這個class 來New出一個新的物件jf;
     JToolBar Northtoolbar = new JToolBar();          //利用JToolBar這個class 來new 出toolbar這個物件;
     JToolBar Westtoolbar = new JToolBar();
@@ -22,9 +45,10 @@ public class TJToolBar {
     String fnameGloble;                         //為了存取方法中fname絕對檔案路徑而設置的字串型態全域變數;
     Point getPoint = new Point();               //同上;
     JPanel panel = new JPanel();
+    JSplitPaneDemo JSP = new JSplitPaneDemo();
     
-    TJToolBar(){     
-           
+    TJToolBar(){   
+        
         String path1 = "C:" + File.separator + "Users"+ File.separator+"User"+ File.separator +"Desktop"+ File.separator+"java"+ File.separator+"1.PNG";
         Icon icon1 = new ImageIcon(path1);
                                                 //String 宣告path1然後檔案位置，new 出一個新的imageIcon讓他的建構函式接收path1
@@ -71,6 +95,17 @@ public class TJToolBar {
         
         JButton textbox =  new JButton("文字方塊");
         Westtoolbar.add(textbox);
+        textbox.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Path path = Paths.get("C:\\Users\\User\\Desktop\\javatest.txt");
+                try (Stream<String> lines = Files.lines(path)) {
+                    String content = lines.collect(Collectors.joining(System.lineSeparator()));
+                    System.out.println(content);
+                } catch (IOException ex) {
+                    Logger.getLogger(TJToolBar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         JButton newImage = new JButton(icon7);
         Westtoolbar.add(newImage);
@@ -178,7 +213,7 @@ public class TJToolBar {
         repaint();   
     }  
    }
-}
+}  
         DragPanel dragPanel = new DragPanel();      //new出一個DragPanel類別的物件dragPanel
           
         FileChooser fc = new FileChooser();         //new出FileChooser類別的物件fc
@@ -194,7 +229,7 @@ public class TJToolBar {
         jf.setVisible(true);
         
     };
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         new TJToolBar();
     }
 }
