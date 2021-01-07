@@ -23,8 +23,13 @@ public class TJToolBar {
      
     class JSplitPaneDemo extends JFrame {
         public JSplitPaneDemo(){
+        JPanel left = new JPanel();
+        JPanel right = new JPanel();
+        left.setBackground(Color.red);
+        right.setBackground(Color.GREEN);
+
         System.out.println("JSplitPaneDemo建構函式");
-            final JSplitPane splitPane = new JSplitPane();// 建立分割面版物件
+            final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, left, right);// 建立分割面版物件
         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);// 設定為水平分割
         splitPane.setDividerLocation(200);// 設定面版預設的分割位置
         splitPane.setDividerSize(1000);// 設定分割條的寬度
@@ -33,7 +38,7 @@ public class TJToolBar {
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION, null, null));// 設定面版的邊框
                 getContentPane().add(splitPane, BorderLayout.CENTER);// 將分割面版新增到上級容器中
-    }
+        }
 }
     JFrame jf=new JFrame("User Interfaces");    //利用JFrame這個class 來New出一個新的物件jf;
     JToolBar Northtoolbar = new JToolBar();          //利用JToolBar這個class 來new 出toolbar這個物件;
@@ -46,7 +51,8 @@ public class TJToolBar {
     Point getPoint = new Point();               //同上;
     JPanel panel = new JPanel();
     JSplitPaneDemo JSP = new JSplitPaneDemo();
-    
+    JLabel imagecontainer;  
+
     TJToolBar(){   
         
         String path1 = "C:" + File.separator + "Users"+ File.separator+"User"+ File.separator +"Desktop"+ File.separator+"java"+ File.separator+"1.PNG";
@@ -125,7 +131,23 @@ public class TJToolBar {
         JLabel nofunction2 = new JLabel(" ");
         Easttoolbar.add(nofunction2);
         
-        JLabel imagecontainer = new JLabel();               //做為新增圖片的container
+        imagecontainer = new JLabel();  
+        
+        imagecontainer.addMouseMotionListener(new MouseMotionAdapter()
+        {
+            public void mouseDragged(MouseEvent e) { 
+            Point currentPt = e.getPoint();
+            TJToolBar.this.imagecontainer.setLocation(0, 0);
+            
+            System.out.println(e.toString());
+            }
+        });
+
+
+
+
+
+//做為新增圖片的container
         panel.add(imagecontainer);
         
         JLabel talkwatch = new JLabel("對話總覽");
@@ -205,6 +227,9 @@ public class TJToolBar {
         class DragListener extends MouseMotionAdapter{
             public void mouseDragged(MouseEvent e) { 
             Point currentPt = e.getPoint();
+            
+            System.out.println(e.toString());
+            
             imageCorner.translate(     
             (int)(currentPt.getX() - prevPt.getX()),
             (int)(currentPt.getY() - prevPt.getY())
